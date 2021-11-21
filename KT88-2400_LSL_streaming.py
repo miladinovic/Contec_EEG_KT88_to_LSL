@@ -167,7 +167,7 @@ def main():
         channel.append(0)
     while 1:
         # find marker
-        ser.read(46)
+        
         ser.read_until(expected=b"\xA0")
 
         # extract 45byte chunk
