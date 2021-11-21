@@ -15,8 +15,8 @@ Once downloaded KT88-2400_LSL_streaming.py run the script with <br />
 `python3 KT88-2400_LSL_streaming.py COM_PORT`or edit the script to set default 
 <br /><br />
 
-**Communication protocol and commands<br />
-**
+**Communication protocol and commands**<br />
+
 <br />
 **Acquisition and filter control (commands in hex format)**<br />
 90 01 Start Acquisition<br />
@@ -26,8 +26,8 @@ Once downloaded KT88-2400_LSL_streaming.py run the script with <br />
 90 05 Start impedance measurement<br />
 90 06 Disable impedance measurement<br />
 <br />
-**Setting physical reference electrode<br />
-**
+**Setting physical reference electrode**<br />
+
 91 01 AA reference (left hemisphere referenced to the left ear lobe, right to the right earlobe)<br />
 91 02 A1 reference (all electrodes referenced to the A1)<br />
 91 03 A2 reference<br />
@@ -35,13 +35,12 @@ Once downloaded KT88-2400_LSL_streaming.py run the script with <br />
 91 05 Cz reference<br />
 91 06 BN (balanced noncephalic reference)<br />
 <br />
-**Montage setup<br />
-**
+**Montage setup**<br />
+
 92 0X (9 defined montages X=1,...,9, the montage can be explored by going to System configuration -> montage ways). Changes of default montage always follow the command 91 04 (avg reference).<br />
 <br /><br />
 
-**Uknown commands
-**<br />
+**Uknown commands**<br />
 80 00<br />
 81 00<br />
 <br />
@@ -58,8 +57,7 @@ Example of the default system settings sequence sent by the provided EEG softwar
 ... DATA STREAM ...<br />
 90 02 //Stop acquisition*<br />
 <br />
-**Data 
-**<br />
+**Data **<br />
 Baud rate 921600<br />
 Data sampling rate 200Hz<br />
 Encoding bits 12<br />
