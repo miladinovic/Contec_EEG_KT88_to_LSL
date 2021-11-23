@@ -1,9 +1,10 @@
 """
-Created on Nov 20, 2021
+Created on Nov 23, 2021
 
 @author: Aleksandar Miladinovic email: alex.miladinovich@gmail.com
 
 Python script used to decode serial data stream of Contec KT88-2400 EEG amplifier and stream it to the local network via LSL
+
 """
 import time
 import serial
@@ -17,48 +18,14 @@ if len(sys.argv) > 1:
 else:
     # port not given, using default
     if sys.platform == 'win32':
-        COM_PORT='COM10'
+        COM_PORT='COM20'
     else:
         COM_PORT='/dev/cu.usbserial-1410'
 
-def openSerialPort(prt=COM_PORT):
-    try:
-        ser = serial.Serial(port=prt,
+ser = serial.Serial(port=COM_PORT,
                     baudrate=921600, parity=serial.PARITY_NONE,
                     stopbits=serial.STOPBITS_ONE,
-                    bytesize=serial.EIGHTBITS,xonxoff=True,rtscts=True,dsrdtr=False)
-        ser.XON = chr(17)
-        ser.XOFF = chr(19)
-        return True
-    except:
-        return False
-
-try:
-   openSerialPort()
-except:
-    print('Error opening',COM_PORT,"try some of the following:")
-    ports = serial.tools.list_ports.comports(include_links=False)
-    for idx in range(0,len(ports)):
-        print(idx+1,".",ports[idx].device)
-    exit(1)
-
-while openSerialPort()!=True:
-    ports = serial.tools.list_ports.comports(include_links=False)
-    for idx in range(0,len(ports)):
-        print(idx+1,".",ports[idx].device)
-    val=input("Select available port or e for exit: ")
-    if val=="e":
-        exit(0)
-    try:
-        val=int(val)
-        new_prt=ports[val-1].device
-        if openSerialPort(new_prt)==False:
-            print("Unable to open port, try again!")
-
-    except:
-        print("Invalid port selection, try again!")
-        continue
-
+                    bytesize=serial.EIGHTBITS,xonxoff=False,rtscts=False,dsrdtr=False)
 
 
 
@@ -100,7 +67,7 @@ def send_default_configuration_to_EEG():
     # set BN as REF (91 + 01 - AA, 02 - A1, 03 - A2, 04 - AVG, 05 - Cz, 06 - BN)
     packet = bytearray()
     packet.append(0x91)
-    packet.append(0x06)
+    packet.append(0x01)
     ser.write(packet)
     time.sleep(0.3)
 
@@ -113,7 +80,7 @@ def send_default_configuration_to_EEG():
     # Enable HW filter 0.03Hz to 40Hz see https://patents.google.com/patent/CN103505200A/en
     packet = bytearray()
     packet.append(0x90)
-    packet.append(0x03) #04 to disable it
+    packet.append(0x04) #04 to disable it
     ser.write(packet)
     time.sleep(0.3)
 
@@ -151,12 +118,6 @@ def main():
     # next make an outlet
     kt88_outlet = StreamOutlet(stream_info_KT88)
 
-    # turn on the the HW filter
-    packet = bytearray()
-    packet.append(0x90)
-    packet.append(0x03)
-    ser.write(packet)
-    time.sleep(0.3)
 
     ser.flushInput()
     ser.flushOutput()
@@ -167,7 +128,7 @@ def main():
         channel.append(0)
     while 1:
         # find marker
-        
+        #ser.read(46)
         ser.read_until(expected=b"\xA0")
 
         # extract 45byte chunk
@@ -211,8 +172,8 @@ def main():
 
         for ch in range(0, 26):
             channel[ch] = float(channel[ch]-2048)/10
-
         if kt88_outlet.have_consumers():
+            #print(channel[ch])
             kt88_outlet.push_sample(channel)
 
 
