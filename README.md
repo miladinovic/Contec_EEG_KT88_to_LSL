@@ -57,7 +57,7 @@ Example of the default system settings sequence sent by the provided EEG softwar
 ... DATA STREAM ...<br />
 90 02 //Stop acquisition*<br />
 <br />
-**Data **<br />
+**Data**<br />
 Baud rate 921600<br />
 Data sampling rate 200Hz<br />
 Encoding bits 12<br />
