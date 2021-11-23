@@ -11,12 +11,23 @@ pyserial<br />
 <br />
 to install depdendencies `run pip3 install pylsl pyserial`<br />
 <br />
-Once downloaded KT88-2400_LSL_streaming.py run the script with <br />
-`python3 KT88-2400_LSL_streaming.py COM_PORT`or edit the script to set default 
+Once downloaded KT88-2400_LSL_streaming.py set the desired port an run the script with <br />
+`python3 KT88-2400_LSL_streaming.py COM_PORT` the script
 <br /><br />
 
-**Communication protocol and commands**<br />
+The ready binaries for Windows x64 are available https://github.com/miladinovic/Contec_KT88-2400_LSL/releases
 
+For Windows it is not necassery to install addional libraries, just make sure that you have changed the port to COM20, then run the EEG24 program to verify if the device still works.
+
+To change port go to Control Panel -> Device Manager -> Ports (COM&LPT) -> Right-click to the com to the UART to USB bridge and select "Properties" -> Port settings tab -> button Advance and change to port COM20 click OK and then run te EEG24.
+
+Choose the desired settings HW filter 0.3-35Hz ON or OFF, as well as, reference electrode (AA=A1+A2, AV=Average, BN=Balanced-non cephalic).
+
+26 channels with state of 200Hz will be streamed to the local network via LSL protocol with the following order ['Fp1', 'Fp2', 'F3', 'F4', 'C3', 'C4', 'P3', 'P4', 'O1', 'O2', 'F7', 'F8', 'T3', 'T4', 'T5', 'T6', 'Fz', 'Pz', 'Cz', 'Pg1', 'Pg2', 'EOGR', 'EOGL', 'EMG', 'BR', 'ECG']
+
+
+
+**Communication protocol and commands**<br />
 <br />
 **Acquisition and filter control (commands in hex format)**<br />
 90 01 Start Acquisition<br />
@@ -63,4 +74,7 @@ Data sampling rate 200Hz<br />
 Encoding bits 12<br />
 Number of channels 26<br />
 
+Protocol: https://github.com/miladinovic/Contec_KT88-2400_LSL/blob/main/serial_decoding_protocol.txt
 
+**Disclamer**
+The provided software is made for educational and research purposes only. It is not by any means a substitute for provided software by manufacturer.
