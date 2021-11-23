@@ -78,3 +78,12 @@ Protocol: https://github.com/miladinovic/Contec_KT88-2400_LSL/blob/main/serial_d
 
 **Disclamer**
 The provided software is made for educational and research purposes only. It is not by any means a substitute for provided software by manufacturer.
+
+**Support my work**
+If you find this script useful for your experiments, please cite my works. Thank you!
+
+Miladinović, Aleksandar, et al. "Effect of power feature covariance shift on BCI spatial-filtering techniques: A comparative study." Computer Methods and Programs in Biomedicine 198 (2021): 105808.
+
+Miladinović, Aleksandar, et al. "Performance of EEG Motor-Imagery based spatial filtering methods: A BCI study on Stroke patients." Procedia Computer Science 176 (2020): 2840-2848.
+
+Miladinović, Aleksandar, et al. "Evaluation of Motor Imagery-Based BCI methods in neurorehabilitation of Parkinson’s Disease patients." 2020 42nd Annual International Conference of the IEEE Engineering in Medicine & Biology Society (EMBC). IEEE, 2020.
