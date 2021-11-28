@@ -7,7 +7,7 @@ Python script used to decode serial data stream of Contec KT88-2400 EEG amplifie
 
 
 Disclaimer
-The provided software is made for educational and research purposes only. It is not by any means a substitute for provided software by manufacturer.
+The provided software is made for educational and research purposes only. It is not by any means a substitute for software provided by manufacturer.
 
 """
 import time
