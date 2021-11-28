@@ -1,12 +1,10 @@
 """
-Created on Nov 23, 2021
+Created on Nov 28, 2021
 
 @author: Aleksandar Miladinovic email: alex.miladinovich@gmail.com
 
 Python script used to decode serial data stream of Contec KT88-2400 EEG amplifier and stream it to the local network via LSL
 
-Disclaimer
-The provided software is made for educational and research purposes only. It is not by any means a substitute for provided software by manufacturer.
 """
 import time
 import serial
@@ -82,7 +80,7 @@ def send_default_configuration_to_EEG():
     # Enable HW filter 0.03Hz to 40Hz see https://patents.google.com/patent/CN103505200A/en
     packet = bytearray()
     packet.append(0x90)
-    packet.append(0x04) #04 to disable it
+    packet.append(0x03) #04 to disable it
     ser.write(packet)
     time.sleep(0.3)
 
@@ -111,11 +109,12 @@ def main():
 
     # add channel labels
     channels = stream_info_KT88.desc().append_child("channels")
-    channel_list = ['Fp1', 'Fp2', 'F3', 'F4', 'C3', 'C4', 'P3', 'P4', 'O1', 'O2', 'F7', 'F8', 'T3', 'T4', 'T5', 'T6',
+    ch_labels = ['Fp1', 'Fp2', 'F3', 'F4', 'C3', 'C4', 'P3', 'P4', 'O1', 'O2', 'F7', 'F8', 'T3', 'T4', 'T5', 'T6',
                     'Fz', 'Pz', 'Cz', 'Pg1', 'Pg2', 'EOGR', 'EOOGL', 'EMG', 'BR', 'ECG']
 
-    for c in channel_list:
-        channels.append_child('label',c)
+    for c in ch_labels:
+        ch=channels.append_child("channel")
+        ch.append_child_value("label", c)
 
     # next make an outlet
     kt88_outlet = StreamOutlet(stream_info_KT88)
