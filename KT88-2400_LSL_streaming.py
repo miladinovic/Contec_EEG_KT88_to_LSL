@@ -115,7 +115,7 @@ def main():
                     'Fz', 'Pz', 'Cz', 'Pg1', 'Pg2', 'EOGR', 'EOOGL', 'EMG', 'BR', 'ECG']
 
     for c in channel_list:
-        channels.append_child(c)
+        channels.append_child('label',c)
 
     # next make an outlet
     kt88_outlet = StreamOutlet(stream_info_KT88)
