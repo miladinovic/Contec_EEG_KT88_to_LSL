@@ -5,6 +5,10 @@ Created on Nov 28, 2021
 
 Python script used to decode serial data stream of Contec KT88-2400 EEG amplifier and stream it to the local network via LSL
 
+
+Disclaimer
+The provided software is made for educational and research purposes only. It is not by any means a substitute for provided software by manufacturer.
+
 """
 import time
 import serial
