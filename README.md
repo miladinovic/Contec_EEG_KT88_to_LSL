@@ -1,7 +1,16 @@
  
 
-# Contec KT88-2400 to LSL
-Script used to decode serial data stream of Contec KT88-2400 EEG amplifier and to stream it to the local network via LSL
+# Contec KT88-1600-2400 to LSL
+Script used to decode serial data stream of Contec **KT88-1600-2400** EEG amplifier and to stream it to the local network via LSL
+
+**Requirements**
+02/12/2021 On request of some users a new script for **KT88-1600** to LSL has been created
+
+Contec KT88-1600
+https://contecmed.eu/products/kt88-digital-brain-electric-activity-mapping
+
+Contec KT88-2400 
+https://contecmed.eu/products/kt88-2400-digital-eeg-and-mapping-system
 
 **Requirements**<br />
 <br />
@@ -11,7 +20,7 @@ pyserial<br />
 <br />
 to install depdendencies `run pip3 install pylsl pyserial`<br />
 <br />
-Once downloaded KT88-2400_LSL_streaming.py set the desired port an run the script with <br />
+Once downloaded KT88-1600_LSL_streaming.py or KT88-2400_LSL_streaming.py set the desired port an run the script with <br />
 `python3 KT88-2400_LSL_streaming.py COM_PORT` the script
 <br /><br />
 
@@ -21,10 +30,11 @@ For Windows it is not necassery to install addional libraries, just make sure th
 
 To change port go to Control Panel -> Device Manager -> Ports (COM&LPT) -> Right-click to the com to the UART to USB bridge and select "Properties" -> Port settings tab -> button Advance and change to port COM20 click OK and then run te EEG24.
 
-Choose the desired settings HW filter 0.3-35Hz ON or OFF, as well as, reference electrode (AA=A1+A2, AV=Average, BN=Balanced-non cephalic).
+Choose the desired settings HW filter 0.3-35Hz ON or OFF, as well as for KT88-2400 only, a reference electrode (AA=A1+A2, AV=Average, BN=Balanced-non cephalic) .
 
-26 channels with state of 200Hz will be streamed to the local network via LSL protocol with the following order ['Fp1', 'Fp2', 'F3', 'F4', 'C3', 'C4', 'P3', 'P4', 'O1', 'O2', 'F7', 'F8', 'T3', 'T4', 'T5', 'T6', 'Fz', 'Pz', 'Cz', 'Pg1', 'Pg2', 'EOGR', 'EOGL', 'EMG', 'BR', 'ECG']
+For KT88-2400 26 channels with state of 200Hz will be streamed to the local network via LSL protocol with the following order ['Fp1', 'Fp2', 'F3', 'F4', 'C3', 'C4', 'P3', 'P4', 'O1', 'O2', 'F7', 'F8', 'T3', 'T4', 'T5', 'T6', 'Fz', 'Pz', 'Cz', 'Pg1', 'Pg2', 'EOGR', 'EOGL', 'EMG', 'BR', 'ECG']
 
+For KT88-1600 16 channels with state of 100Hz will be streamed to the local network via LSL protocol with the following order ['Fp1', 'Fp2', 'F3', 'F4', 'C3', 'C4', 'P3', 'P4', 'O1', 'O2', 'F7', 'F8', 'T3', 'T4', 'T5', 'T6','ECG1','ECG2']
 
 
 **Communication protocol and commands**<br />
@@ -37,7 +47,7 @@ Choose the desired settings HW filter 0.3-35Hz ON or OFF, as well as, reference 
 90 05 Start impedance measurement<br />
 90 06 Disable impedance measurement<br />
 <br />
-**Setting physical reference electrode**<br />
+**Setting physical reference electrode (KT88-2400 only)**<br />
 
 91 01 AA reference (left hemisphere referenced to the left ear lobe, right to the right earlobe)<br />
 91 02 A1 reference (all electrodes referenced to the A1)<br />
@@ -46,7 +56,7 @@ Choose the desired settings HW filter 0.3-35Hz ON or OFF, as well as, reference 
 91 05 Cz reference<br />
 91 06 BN (balanced noncephalic reference)<br />
 <br />
-**Montage setup**<br />
+**Montage setup (KT88-2400 only)**<br />
 
 92 0X (9 defined montages X=1,...,9, the montage can be explored by going to System configuration -> montage ways). Changes of default montage always follow the command 91 04 (avg reference).<br />
 <br /><br />
@@ -55,7 +65,7 @@ Choose the desired settings HW filter 0.3-35Hz ON or OFF, as well as, reference 
 80 00<br />
 81 00<br />
 <br />
-Example of the default system settings sequence sent by the provided EEG software.<br />
+Example of the default KT88-2400 system settings sequence sent by the provided EEG software.<br />
 <br />
 *90 02 //stop acquisition<br />
 80 00 //?<br />
@@ -70,9 +80,9 @@ Example of the default system settings sequence sent by the provided EEG softwar
 <br />
 **Data**<br />
 Baud rate 921600<br />
-Data sampling rate 200Hz<br />
+Data sampling rate 100Hz or 200Hz<br />
 Encoding bits 12<br />
-Number of channels 26<br />
+Number of channels 18 or 26<br />
 
 Protocol: https://github.com/miladinovic/Contec_KT88-2400_LSL/blob/main/serial_decoding_protocol.txt
 
