@@ -141,7 +141,7 @@ def main():
 
         ch = 0
         for bt in range(6, 45, 3):  # bt 7-43
-            channel[ch] = ((chunk[bt] & 0b01110000) << 5) | (chunk[bt + 1] & 0b01111111)
+            channel[ch] = ((chunk[bt] & 0b01110000) << 4) | (chunk[bt + 1] & 0b01111111)
             if bt == 43:
                 break
             channel[ch + 1] = ((chunk[bt] & 0b00001111) << 8) | (chunk[bt + 2] & 0b01111111)
