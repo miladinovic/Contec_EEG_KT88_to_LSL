@@ -139,24 +139,24 @@ def main():
             ch=ch+2
 
 
-        channel[0]=(channel[0]) | (chunk[0] & 0b00000001)<<7
-        channel[1]=(channel[1]) | (chunk[0] & 0b00000010)<<10 | (chunk[0] & 0b00000100)<<5
-        channel[2]=(channel[2]) | (chunk[0] & 0b00001000)<<4
-        channel[3]=(channel[3]) | (chunk[0] & 0b00010000)<<7 | (chunk[0] & 0b00100000)<<2
-        channel[4]=(channel[4]) | (chunk[1] & 0b00000001)<<11 | (chunk[1] & 0b00000010)<<6
-        channel[5]=(channel[5]) | (chunk[1] & 0b00000100)<<5
-        channel[6]=(channel[6]) | (chunk[1] & 0b00001000)<<8 | (chunk[1] & 0b00010000)<<3
-        channel[7]=(channel[7]) | (chunk[1] & 0b00100000)<<2
-        channel[8]=(channel[8]) | ((chunk[1] & 0b01000000)<<5) | (chunk[2] & 0b00000001)<<7
-        channel[9]=(channel[9]) | (chunk[2] & 0b00000010)<<6
-        channel[10]=(channel[10]) | (chunk[2] & 0b00000100)<<9 | (chunk[2] & 0b00001000)<<4
-        channel[11]=(channel[11]) | (chunk[2] & 0b00010000)<<3
-        channel[12]=(channel[12]) | (chunk[2] & 0b00100000)<<6 | (chunk[2] & 0b01000000)<<1
-        channel[13]=(channel[13]) | (chunk[3] & 0b00000001)<<7
-        channel[14]=(channel[14]) | (chunk[3] & 0b00000010)<<10 | (chunk[3] & 0b00000100)<<5
-        channel[15]=(channel[15]) | (chunk[3] & 0b00001000)<<4
-        channel[16]=(channel[16]) | (chunk[3] & 0b00010000)<<7 | (chunk[3] & 0b00100000<<2)
-        channel[17]=(channel[17]) | (chunk[3] & 0b01000000)<<1
+        channel[0] = (channel[0]) | (chunk[0] & 0b00000001) << 11 | (chunk[0] & 0b00000010) << 6
+        channel[1] = (channel[1]) | (chunk[0] & 0b00000100) << 5
+        channel[2] = (channel[2]) | (chunk[0] & 0b00001000) << 8 | (chunk[1] & 0b00000001) << 7
+        channel[3] = (channel[3]) | (chunk[1] & 0b00000010) << 6
+        channel[4] = (channel[4]) | (chunk[1] & 0b00001000) << 4 | (chunk[1] & 0b00000100) << 9
+        channel[5] = (channel[5]) | (chunk[1] & 0b00010000) << 3
+        channel[6] = (channel[6]) | (chunk[1] & 0b00100000) << 6 | (chunk[1] & 0b01000000) << 1
+        channel[7] = (channel[7]) | (chunk[2] & 0b00000001) << 7
+        channel[8] = (channel[8]) | (chunk[2] & 0b00000010) << 10 | (chunk[2] & 0b00000100) << 5
+        channel[9] = (channel[9]) | (chunk[2] & 0b00001000) << 4
+        channel[10] = (channel[10]) | (chunk[2] & 0b00010000) << 7 | (chunk[2] & 0b00100000) << 2
+        channel[11] = (channel[11]) | (chunk[2] & 0b01000000) << 1
+        channel[12] = (channel[12]) | (chunk[3] & 0b00000001) << 11 | (chunk[3] & 0b00000010) << 6
+        channel[13] = (channel[13]) | (chunk[3] & 0b00000100) << 5
+        channel[14] = (channel[14]) | (chunk[3] & 0b00001000) << 8 | (chunk[3] & 0b00010000) << 3
+        channel[15] = (channel[15]) | (chunk[3] & 0b00100000) << 2
+        channel[16] = (channel[16]) | (chunk[3] & 0b01000000) << 5 | (chunk[4] & 0b00000001) << 7
+        channel[17] = (channel[17]) | (chunk[4] & 0b00000010) << 6
 
 
         for ch in range(0, 18):
