@@ -1,9 +1,9 @@
 """
-Created on Nov 28, 2021
+Created on Jul 14, 2022
 
 @author: Aleksandar Miladinovic email: alex.miladinovich@gmail.com
 
-Python script used to decode serial data stream of Contec KT88-2400 EEG amplifier and stream it to the local network via LSL
+Python script used to decode serial data stream of Contec KT88-3200 EEG amplifier and stream it to the local network via LSL
 
 """
 import time
@@ -167,7 +167,7 @@ def main():
         channel[19] = (channel[19]) | ((chunk[4] & 0b00000100) >> 2) << 7
         channel[20] = (channel[20]) | ((chunk[4] & 0b00001000) >> 3) << 11 | ((chunk[4] & 0b00010000) >> 4) << 7
         channel[21] = (channel[21]) | ((chunk[4] & 0b00100000) >> 5) << 7
-        channel[22] = (channel[22]) | (((chunk[4] & 0b01000000) >> 5) | (chunk[5] & 0b00000001)) << 7
+        channel[22] = (channel[22]) | ((chunk[4] & 0b01000000) << 5) | (chunk[5] & 0b00000001) << 7
         channel[23] = (channel[23]) | ((chunk[5] & 0b00000010) >> 1) << 7
         channel[24] = (channel[24]) | ((chunk[5] & 0b00000100) >> 2) << 11 | ((chunk[5] & 0b00001000) >> 3) << 7
         channel[25] = (channel[25]) | ((chunk[5] & 0b00010000) >> 4) << 7
@@ -177,6 +177,8 @@ def main():
         channel[29] = (channel[29]) | ((chunk[6] & 0b00001000) >> 3) << 7
         channel[30] = (channel[30]) | ((chunk[6] & 0b00010000) >> 4) << 11 | ((chunk[6] & 0b00100000) >> 5) << 7
         channel[31] = (channel[31]) | ((chunk[6] & 0b01000000) >> 6) << 7
+
+
 
 
         for ch in range(0, 32):
