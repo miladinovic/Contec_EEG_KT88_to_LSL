@@ -1,6 +1,6 @@
  
 
-# Contec KT88-1600-2400 to LSL
+# Contec KT88-1600-2400-3200 to LSL
 Script used to decode serial data stream of Contec **KT88-1600-2400** EEG amplifier and to stream it to the local network via LSL
 
 **Requirements**
@@ -11,6 +11,9 @@ https://contecmed.eu/products/kt88-digital-brain-electric-activity-mapping
 
 Contec KT88-2400 
 https://contecmed.eu/products/kt88-2400-digital-eeg-and-mapping-system
+
+Contec KT88-3200 
+https://contecmed.eu/products/kt88-3200-digital-32-channel-eeg-machine-mapping-system-2-tripods-brain-electric-contec
 
 **Requirements**<br />
 <br />
@@ -32,9 +35,12 @@ To change port go to Control Panel -> Device Manager -> Ports (COM&LPT) -> Right
 
 Choose the desired settings HW filter 0.3-35Hz ON or OFF, as well as for KT88-2400 only, a reference electrode (AA=A1+A2, AV=Average, BN=Balanced-non cephalic) .
 
+For KT88-1600 16 channels with state of 100Hz will be streamed to the local network via LSL protocol with the following order ['Fp1', 'Fp2', 'F3', 'F4', 'C3', 'C4', 'P3', 'P4', 'O1', 'O2', 'F7', 'F8', 'T3', 'T4', 'T5', 'T6','ECG1','ECG2']
+
 For KT88-2400 26 channels with state of 200Hz will be streamed to the local network via LSL protocol with the following order ['Fp1', 'Fp2', 'F3', 'F4', 'C3', 'C4', 'P3', 'P4', 'O1', 'O2', 'F7', 'F8', 'T3', 'T4', 'T5', 'T6', 'Fz', 'Pz', 'Cz', 'Pg1', 'Pg2', 'EOGR', 'EOGL', 'EMG', 'BR', 'ECG']
 
-For KT88-1600 16 channels with state of 100Hz will be streamed to the local network via LSL protocol with the following order ['Fp1', 'Fp2', 'F3', 'F4', 'C3', 'C4', 'P3', 'P4', 'O1', 'O2', 'F7', 'F8', 'T3', 'T4', 'T5', 'T6','ECG1','ECG2']
+
+For KT88-3200 32 channels with state of 200Hz will be streamed to the local network via LSL protocol with the following order ['Fp1', 'Fp2', 'F3', 'F4', 'C3', 'C4', 'P3', 'P4', 'O1', 'O2', 'F7', 'F8', 'T7', 'T8','P7', 'P8',  'Fz', 'Pz', 'Cz', 'PG1', 'PG2','AFz', 'FCz', 'CPz',  'CP3', 'CP4','FC3', 'FC4', 'TP7', 'TP8', 'FT7', 'FT8']
 
 
 **Communication protocol and commands**<br />
@@ -44,10 +50,10 @@ For KT88-1600 16 channels with state of 100Hz will be streamed to the local netw
 90 02 Stop acquisition<br />
 90 03 Enable HW filter 0.5-35Hz<br />
 90 04 Disable HW filter<br />
-90 05 Start impedance measurement<br />
-90 06 Disable impedance measurement<br />
+90 05 Start impedance measurement (KT88-2400/3200 only)<br />
+90 06 Disable impedance measurement (KT88-2400/3200 only)<br />
 <br />
-**Setting physical reference electrode (KT88-2400 only)**<br />
+**Setting physical reference electrode (KT88-2400/3200 only)**<br />
 
 91 01 AA reference (left hemisphere referenced to the left ear lobe, right to the right earlobe)<br />
 91 02 A1 reference (all electrodes referenced to the A1)<br />
@@ -56,7 +62,7 @@ For KT88-1600 16 channels with state of 100Hz will be streamed to the local netw
 91 05 Cz reference<br />
 91 06 BN (balanced noncephalic reference)<br />
 <br />
-**Montage setup (KT88-2400 only)**<br />
+**Montage setup (KT88-2400/3200 only)**<br />
 
 92 0X (9 defined montages X=1,...,9, the montage can be explored by going to System configuration -> montage ways). Changes of default montage always follow the command 91 04 (avg reference).<br />
 <br /><br />
