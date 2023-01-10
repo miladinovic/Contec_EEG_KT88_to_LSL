@@ -67,7 +67,7 @@ def send_default_configuration_to_EEG():
     # set BN as REF (91 + 01 - AA, 02 - A1, 03 - A2, 04 - AVG, 05 - Cz, 06 - BN)
     packet = bytearray()
     packet.append(0x91)
-    packet.append(0x06)
+    packet.append(0x01)
     ser.write(packet)
     time.sleep(0.3)
 
@@ -87,7 +87,7 @@ def send_default_configuration_to_EEG():
     # Disable impedance measurement
     packet = bytearray()
     packet.append(0x90)
-    packet.append(0x01)
+    packet.append(0x06)
     ser.write(packet)
     time.sleep(0.3)
 
