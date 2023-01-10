@@ -87,7 +87,7 @@ def send_default_configuration_to_EEG():
     # Disable impedance measurement
     packet = bytearray()
     packet.append(0x90)
-    packet.append(0x06)
+    packet.append(0x01)
     ser.write(packet)
     time.sleep(0.3)
 
